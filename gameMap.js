@@ -5,24 +5,24 @@
 function Cell(xy, size, terrain) {
     this.x = xy[0];
     this.y = xy[1];
+    this.canvasX = this.x;
+    this.canvasY = this.y;
     this.width = size;
     this.height = size;
     this.terrain = terrain || 'meadow';
-    //document.write(":Cell created:")
 }
 
 Cell.prototype = {
     draw: function(context) {
-        context.clearRect(this.x, this.y, this.width, this.height);
+        context.clearRect(this.canvasX, this.canvasY, this.width, this.height);
         var terrainID = terrainClass[this.terrain];
         context.fillStyle = terrainClass.props[terrainID].color;
-        context.fillRect(this.x, this.y, this.width, this.height);
+        context.fillRect(this.canvasX, this.canvasY, this.width, this.height);
     }
 };
 
 
 function GameMap(width, height, cellSize) {
-    //document.write("GameMapInitStart");
     this.width = width;
     this.height = height;
     this.cells = (function() {
@@ -39,7 +39,6 @@ function GameMap(width, height, cellSize) {
         }
         return cells})();
     this.create_terrain(inputMap);
-    //document.write("GameMapInitEnd")
 }
 
 GameMap.prototype = {
@@ -53,6 +52,3 @@ GameMap.prototype = {
         }
     }
 };
-
-
-//var g = new GameMap(10, 10, 10);

@@ -7,22 +7,22 @@
 var requestAddress = "http://104.236.42.106:8083/getviewstate/";
 
 var inputMap = [
-        ["meadow", "prairie", "water", "rock", "forest", "road", "rock", "rock", "rock", "rock"],
-        ["meadow", "prairie", "water", "rock", "forest", "road", "rock", "rock", "rock", "rock"],
-        ["meadow", "prairie", "water", "rock", "forest", "road", "rock", "rock", "rock", "rock"],
-        ["meadow", "prairie", "water", "rock", "forest", "road", "rock", "rock", "rock", "rock"],
-        ["meadow", "prairie", "water", "rock", "forest", "road", "rock", "rock", "rock", "rock"],
-        ["meadow", "prairie", "water", "rock", "forest", "road", "rock", "rock", "rock", "rock"],
-        ["meadow", "prairie", "water", "rock", "forest", "road", "rock", "rock", "rock", "rock"],
-        ["meadow", "prairie", "water", "rock", "forest", "road", "rock", "rock", "rock", "rock"],
-        ["meadow", "prairie", "water", "rock", "forest", "road", "rock", "rock", "rock", "rock"],
-        ["meadow", "prairie", "water", "rock", "forest", "road", "rock", "rock", "rock", "rock"],
-        ["meadow", "prairie", "water", "rock", "forest", "road", "rock", "rock", "rock", "rock"],
-        ["meadow", "prairie", "water", "rock", "forest", "road", "rock", "rock", "rock", "rock"],
-        ["meadow", "prairie", "water", "rock", "forest", "road", "rock", "rock", "rock", "rock"],
-        ["meadow", "prairie", "water", "rock", "forest", "road", "rock", "rock", "rock", "rock"],
-        ["meadow", "prairie", "water", "rock", "forest", "road", "rock", "rock", "rock", "rock"],
-        ["meadow", "prairie", "water", "rock", "forest", "road", "rock", "rock", "rock", "rock"]
+        ["meadow", "meadow", "water", "meadow", "meadow", "road", "meadow", "meadow", "meadow", "meadow"],
+        ["meadow", "meadow", "water", "meadow", "meadow", "road", "meadow", "meadow", "meadow", "meadow"],
+        ["meadow", "meadow", "water", "meadow", "meadow", "road", "meadow", "meadow", "meadow", "meadow"],
+        ["meadow", "meadow", "water", "meadow", "meadow", "road", "meadow", "meadow", "meadow", "meadow"],
+        ["meadow", "meadow", "water", "meadow", "meadow", "road", "meadow", "meadow", "meadow", "meadow"],
+        ["meadow", "meadow", "water", "meadow", "meadow", "road", "meadow", "meadow", "meadow", "meadow"],
+        ["meadow", "meadow", "water", "meadow", "meadow", "road", "road", "road", "road", "road"],
+        ["meadow", "meadow", "water", "meadow", "meadow", "road", "meadow", "meadow", "meadow", "meadow"],
+        ["meadow", "meadow", "water", "meadow", "meadow", "road", "meadow", "meadow", "meadow", "rock"],
+        ["meadow", "meadow", "water", "rock", "rock", "road", "rock", "rock", "rock", "rock"],
+        ["meadow", "meadow", "water", "rock", "rock", "road", "rock", "rock", "rock", "rock"],
+        ["meadow", "meadow", "water", "rock", "rock", "road", "rock", "rock", "rock", "rock"],
+        ["meadow", "meadow", "water", "rock", "rock", "road", "rock", "rock", "rock", "rock"],
+        ["meadow", "meadow", "water", "rock", "rock", "road", "rock", "rock", "rock", "rock"],
+        ["meadow", "meadow", "water", "rock", "rock", "road", "rock", "rock", "rock", "rock"],
+        ["meadow", "meadow", "water", "rock", "rock", "road", "rock", "rock", "rock", "rock"]
     ];
 
 

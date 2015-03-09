@@ -7,29 +7,30 @@ $.getScript("gameMap.js");
 
 function World(width, height, cellSize) {
     //document.write("WorldInitStart");
-    this.allObjects = {};
+    this.allGameObjects = {tttt: 12345};
     this.gameMap = new GameMap(width, height, cellSize);
     //document.write("WorldInitEnd");
 }
 
 World.prototype = {
     createGameObject: function(data) {
+        console.log("World is creating object")
         var objectType = data["type"];
-        if (objectType == "enemy") {
-            return {name: "enemy"};
+        var id = data["Id"];
+        var position = data["Position"];
+        var direction = data["Direction"];
+        var obj;
+
+        if (objectType == "NPC") {
+            obj = new GameObject(id, objectType, position, direction)
         }
 
         else if (objectType == "player") {
-            return {name: "player"};
+            obj = new GameObject(id, objectType, position, direction)
         }
 
         else throw "invalid gameObject type";
+
+        this.allGameObjects[id] = obj
     }
 };
-
-//document.write("888")
-//var w = new World(5, 6, 10);
-//var g = new GameMap(10, 10, 10);
-//document.write("999")
-
-

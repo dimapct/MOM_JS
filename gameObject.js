@@ -3,22 +3,28 @@
  */
 
 
-function GameObject(id, objectType, xy){
+function GameObject(id, objectType, position, direction){
     this.id = id;
     this.objectType = objectType;
-    this.xy = xy;
+    this.xy = position;
+    this.canvasXY = this.xy;
+    this.direction = direction;
 }
 GameObject.prototype = {
-    draw: function() {
+    draw: function(context) {
+        console.log("GameObject Draw: " + this.objectType);
         if (this.objectType == "player"){
+            context.fillStyle = "red";
+            context.fillRect(this.xy.X, this.xy.Y, 20, 20);
 
         }
 
-        else if (this.objectType == "enemy") {
-
+        else if (this.objectType == "NPC") {
+            context.fillStyle = "black";
+            context.fillRect(this.xy.X, this.xy.Y, 20, 20);
         }
 
-        else throw TypeError
+        else throw "invalid gameObject type";
     }
 };
 

@@ -2,85 +2,54 @@
  * Created by dimapct on 12.02.2015.
  */
 
-$.getScript("config.js");
-$.getScript("world.js");
-var canvas, context;
-canvas = document.getElementById("canvas");
-context = canvas.getContext("2d");
-
-function Game(worldWidth, worldHeight, cellSize, fps) {
+//$.getScript("config.js");
+//$.getScript("world.js");
+function Game(worldWidth, worldHeight, player, cellSize, fps, gameProxy) {
     this.width = worldWidth; // cells in a row
     this.height = worldHeight; // cells in a column
+    this.player = player;
     this.cellSize = cellSize;
-
-    this.setGameWindowSize();
+    this.canvas = document.getElementById("canvas");
+    this.context = this.canvas.getContext("2d");
+    this.setGameScreenSize();
     this.world = new World(worldWidth, worldHeight, cellSize);
     this.fps = fps;
-    //document.write(":GameInitEnd:")
+    this.serverFramesQueue = [];
+    this.frameManager = new FrameManager(player, this.world);
+    this.gameProxy = gameProxy;
 }
 
 Game.prototype = {
     loop: function () {
-        //document.write("loop");
         this.update();
-        //document.write("loop_2");
         this.draw();
-        //document.write("loop_3");
     },
 
     update: function () {
-        message = this.getServerMessage();
-        //document.write(5);
-        //document.write(this.height);        //document.write("kkkk")
+        this.prepareNextFrame();
+        this.sendInputData();
+        //console.log(this.serverFramesQueue.length)
     },
 
-    draw: function () {
-        var cells = this.world.gameMap.cells;
-        for (var y = 0; y < cells.length; y++) {
-            var row = cells[y];
-            for (var x = 0; x < row.length; x++) {
-                var cell = row[x];
-                cell.draw(context);
-            }
-        }
-        },
+    draw: function () {this.frameManager.draw(this.context)},
 
-    setGameWindowSize: function () {
-        var worldWidth = inputMap[0].length;
-        var worldHeight = inputMap.length;
-
-        canvas.width = worldWidth * 50;
-        canvas.height = worldHeight * 50;
+    setGameScreenSize: function () {
+        this.canvas.width = $(window).width();
+        this.canvas.height = $(window).height();
     },
 
-    getServerMessage: function () {
-        //var request = new XMLHttpRequest();
-        //
-        //
-        //
-        //request.open("GET", requestAddress);
-        //
-        //request.onreadystatechange = function () {
-        //    if (request.readyState == 4) {
-        //        var type = request.getResponseHeader("Content-Type")
-        //        document.write("Status: " + request.status + "</br>");
-        //        document.write("StatusText: " + type + "</br>");
-        //        //if
-        //        document.write("responseText: " + typeof (JSON.parse(request.responseText)) + "</br>");
-        //        document.write("readyState: " + request.readyState + "</br>");
-        //    }
-        //};
+    getFrameFromServer: function () {
+        var self = this;
+        this.gameProxy.server.getActiveBodies(self.player.Id).done(function(obj) {
+            self.serverFramesQueue.push(obj)})
+    },
 
-        //request.send();
+    sendInputData: function () {},
 
-
-
-        return {"<0.163.0>":{"x":80,"y":140}, "<0.162.0>":{"x":35,"y":500}};
+    prepareNextFrame: function () {
+        var nextFrame = this.serverFramesQueue.shift();
+        if (nextFrame) this.frameManager.processFrame(nextFrame);
+        else console.log("No frames in the Queue. Processing prediction.")
     }
 };
 
-var worldWidth = inputMap[0].length;
-var worldHeight = inputMap.length;
-
-game = new Game(worldWidth, worldHeight, 50, 2000);
-setInterval(function () {game.loop()}, game.fps);
