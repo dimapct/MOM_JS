@@ -3,10 +3,10 @@
  */
 
 function Cell(xy, size, terrain) {
-    this.x = xy[0];
-    this.y = xy[1];
-    this.canvasX = this.x;
-    this.canvasY = this.y;
+    this.X = xy[0];
+    this.Y = xy[1];
+    this.canvasX = this.X;
+    this.canvasY = this.Y;
     this.width = size;
     this.height = size;
     this.terrain = terrain || 'meadow';

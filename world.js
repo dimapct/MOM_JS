@@ -26,7 +26,10 @@ World.prototype = {
         }
 
         else if (objectType == "player") {
-            obj = new GameObject(id, objectType, position, direction)
+            // ТУТ БАГ!! !! !((;;! (;(;(
+            var canvasXY = {X: $(window).width()/2, Y: $(window).height()/2};
+            console.log(canvasXY.X + "!!!!!!")
+            obj = new GameObject(id, objectType, position, direction, canvasXY)
         }
 
         else throw "invalid gameObject type";

@@ -14,6 +14,8 @@ FrameManager.prototype = {
         this.updateGameObjects(serverFrame);
         this.currentFrame.cells = this.world.gameMap.cells;
         this.currentFrame.objects = this.world.allGameObjects;
+
+        this.updateCanvasXY();
     },
 
     draw: function (context) {
@@ -96,5 +98,40 @@ FrameManager.prototype = {
 
         objData["type"] = objType;
         this.world.createGameObject(objData);
+    },
+
+    updateCanvasXY: function () {
+        var self = this;
+        // Update cells
+        this.currentFrame.cells.forEach(function (row) {
+           row.forEach(function (cell) {
+               var dx = self.target.xy.X - cell.X;
+               var dy = self.target.xy.Y - cell.Y;
+
+               cell.canvasX = self.target.canvasXY.X - dx;
+               cell.canvasY = self.target.canvasXY.Y - dy;
+
+
+
+           })
+        });
+
+
+        // Update objects
+        for (var id in this.currentFrame.objects) {
+            var obj = this.currentFrame.objects[id];
+            if (obj.objectType !== "player"){
+                var dx = self.target.xy.X - obj.xy.X;
+                var dy = self.target.xy.Y - obj.xy.Y;
+                console.log(222)
+                console.log(dx + ", " + dy);
+                console.log(222)
+                obj.canvasXY.X = self.target.canvasXY.X - dx;
+                obj.canvasXY.Y = self.target.canvasXY.Y - dy;
+            }
+
+        }
+
+
     }
 };

@@ -15,7 +15,11 @@ function Game(worldWidth, worldHeight, player, cellSize, fps, gameProxy) {
     this.world = new World(worldWidth, worldHeight, cellSize);
     this.fps = fps;
     this.serverFramesQueue = [];
-    this.frameManager = new FrameManager(player, this.world);
+    this.world.createGameObject({"Id": player.Id, "type": "player"});
+    //console.log(4445);
+    //console.log(this.world[player.Id]);
+    //console.log(4445);
+    this.frameManager = new FrameManager(this.world.allGameObjects[player.Id], this.world);
     this.gameProxy = gameProxy;
 }
 
